@@ -1,6 +1,3 @@
-<?php //dd(flash()->get('validacoes_login')) 
-?>
-
 <div class="h-screen grid grid-cols-2 gap-2 p-6">
   <div class="flex flex-col bg-login bg-cover bg-bottom w-full pt-12 pb-16 px-12 justify-between rounded-3xl">
     <img class="h-24 w-24" src="assets\logo.svg" alt="ab filmes" />

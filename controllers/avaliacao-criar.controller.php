@@ -16,7 +16,7 @@ $validacao = Validacao::validar([
 ], $_POST);
 
 if ($validacao->naoPassou()) {
-  header('location: /filmes?id=' . $filme_id);
+  header('location: /filme?id=' . $filme_id);
   exit();
 }
 

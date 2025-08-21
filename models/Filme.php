@@ -19,7 +19,7 @@ class Filme
     return $database->query(
       "select 
         f.id, f.titulo, f.categoria, f.descricao, f.ano, f.imagem,
-        ifnull(round(sum(a.nota) / 5.0), 0) as nota_avaliacao,
+        ifnull(round(avg(a.nota)), 0) as nota_avaliacao,
         ifnull(count(a.id), 0) as count_avaliacoes
       from
       filmes f
@@ -41,8 +41,8 @@ class Filme
     return (new self)->query('titulo like :filtro', ['filtro' => "%$filtro%"])->fetchAll();
   }
 
-  public static function meus($usuario_id)
+  public static function meus($usuario_id, $filtro = '')
   {
-    return (new self)->query('f.usuario_id = :usuario_id', ['usuario_id' => $usuario_id])->fetchAll();
+    return (new self)->query('f.usuario_id = :usuario_id and titulo like :filtro', ['usuario_id' => $usuario_id, 'filtro' => "%$filtro%"])->fetchAll();
   }
 }

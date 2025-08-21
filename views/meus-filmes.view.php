@@ -1,4 +1,4 @@
-<div class="mx-auto max-w-screen px-24">
+<div class="mx-auto max-w-screen px-80 pb-16">
   <div class="flex justify-between items-center mt-12">
     <h1 class="font-display text-3xl text-gray-100">Meus filmes</h1>
 
@@ -10,7 +10,8 @@
             type="text"
             name="pesquisar"
             class="font-body bg-gray-700 border border-gray-500 rounded p-3 pl-10 text-white placeholder-gray-300 placeholder-shown:placeholder-gray-300 focus:placeholder-transparent focus:outline-none focus:border-2 focus:border-purple-base caret-gray-300 w-full text-lg"
-            placeholder="Pesquisar filme...">
+            placeholder="Pesquisar filme..."
+            value="<?= $_GET["pesquisar"] ?? '' ?>">
         </div>
         <div class="w-px self-stretch bg-gray-500"></div>
         <a href="/filme-criar" class="bg-purple-base text-white rounded py-3 px-4 font-body font-semibold text-lg hover:bg-purple-light hover:shadow-lg hover:shadow-purple-light/50 transition-colors">
@@ -20,8 +21,8 @@
     </form>
   </div>
 
-  <section class="mt-12 flex flex-col items-center justify-center gap-4">
-    <?php if (!$filmes) : ?>
+  <?php if (!$filmes) : ?>
+    <section class="mt-12 flex flex-col items-center justify-center gap-4">
       <i class="ph ph-film-slate text-gray-400 text-5xl"></i>
       <div class="text-gray-200 text-base text-center">
         <p>Nenhum filme registrado<?= isset($_GET["pesquisar"]) ? " com \"" .  $_GET['pesquisar'] . "\"<br>Que tal tentar outra busca?" : ".<br>Que tal começar cadastrando seu primeiro filme?" ?></p>
@@ -41,8 +42,14 @@
           </a>
         </div>
       <?php endif; ?>
-    <?php endif; ?>
-  </section>
+    </section>
+  <?php else : ?>
+    <section class="mt-12 grid gap-4 lg:gap-8 grid-cols-1 md:grid-cols-2 lg:grid-cols-4">
+      <?php foreach ($filmes as $filme) {
+        require 'partials/_filme.php';
+      } ?>
+    </section>
+  <?php endif; ?>
 </div>
 
 <script>

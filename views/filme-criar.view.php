@@ -1,107 +1,109 @@
 <form method="post" action="/filme-criar" enctype="multipart/form-data">
-  <div class="mx-auto max-w-screen px-40">
-    <div class="flex mt-12 gap-12 w-full">
-      <?php $validacoes = flash()->get('validacoes') ?>
-      <!-- Upload de Imagem -->
-      <div class="w-1/3 bg-gray-600 rounded-lg p-8 flex flex-col items-center justify-center min-h-96 border-2 border-dashed border-gray-500 hover:border-purple-light transition-colors cursor-pointer relative" id="upload-area">
-        <div id="upload-content" class="flex flex-col items-center justify-center">
-          <i class="ph ph-upload-simple text-purple-light text-6xl mb-4"></i>
-          <span class="text-gray-300 text-lg">Fazer upload</span>
-        </div>
-        <input type="file" name="imagem" class="absolute inset-0 w-full h-full opacity-0 cursor-pointer z-10" accept="image/*" id="file-input">
-      </div>
-
-      <!-- Formulário -->
-      <div class="w-2/3 space-y-6">
-        <div class="flex justify-between items-center">
-          <h1 class="font-title font-bold text-3xl text-gray-100">Novo filme</h1>
-        </div>
-        <!-- Campo Título -->
-        <div class="flex flex-col gap-2">
-          <div class="relative">
-            <i class="ph ph-film-slate absolute left-3 top-1/2 -translate-y-1/2 text-xl <?= isset($validacoes["titulo"]) ? 'text-error-base' : 'text-gray-300 has-[+.filled]:text-purple-light' ?>"></i>
-            <input
-              type="text"
-              name="titulo"
-              class="font-body bg-gray-700 border border-gray-500 rounded p-3 pl-10 text-white placeholder-gray-300 placeholder-shown:placeholder-gray-300 focus:placeholder-transparent focus:outline-none focus:border-2 focus:border-purple-base caret-gray-300 w-full text-lg"
-              placeholder="Título" />
+  <div class="px-80">
+    <div class="mx-auto max-w-screen px-40">
+      <div class="flex mt-12 gap-12 w-full">
+        <?php $validacoes = flash()->get('validacoes') ?>
+        <!-- Upload de Imagem -->
+        <div class="w-1/3 bg-gray-600 rounded-lg p-8 flex flex-col items-center justify-center min-h-96 border-2 border-dashed border-gray-500 hover:border-purple-light transition-colors cursor-pointer relative" id="upload-area">
+          <div id="upload-content" class="flex flex-col items-center justify-center">
+            <i class="ph ph-upload-simple text-purple-light text-6xl mb-4"></i>
+            <span class="text-gray-300 text-lg">Fazer upload</span>
           </div>
-          <?php if (isset($validacoes["titulo"])) : ?>
-            <?php foreach ($validacoes["titulo"] as $validacao) : ?>
-              <p class="text-sm text-error-light"><i class="ph ph-warning"></i> <?= $validacao ?></p>
-            <?php endforeach; ?>
-          <?php endif; ?>
+          <input type="file" name="imagem" class="absolute inset-0 w-full h-full opacity-0 cursor-pointer z-10" accept="image/*" id="file-input">
         </div>
 
-        <!-- Campos Ano e Categoria -->
-        <div class="grid grid-cols-2 gap-4">
-          <!-- Campo Ano -->
+        <!-- Formulário -->
+        <div class="w-2/3 space-y-6">
+          <div class="flex justify-between items-center">
+            <h1 class="font-title font-bold text-3xl text-gray-100">Novo filme</h1>
+          </div>
+          <!-- Campo Título -->
           <div class="flex flex-col gap-2">
             <div class="relative">
-              <i class="ph ph-calendar-blank absolute left-3 top-1/2 -translate-y-1/2 text-xl <?= isset($validacoes["ano"]) ? 'text-error-base' : 'text-gray-300 has-[+.filled]:text-purple-light' ?>"></i>
+              <i class="ph ph-film-slate absolute left-3 top-1/2 -translate-y-1/2 text-xl <?= isset($validacoes["titulo"]) ? 'text-error-base' : 'text-gray-300 has-[+.filled]:text-purple-light' ?>"></i>
               <input
                 type="text"
-                name="ano"
-                inputmode="numeric"
+                name="titulo"
                 class="font-body bg-gray-700 border border-gray-500 rounded p-3 pl-10 text-white placeholder-gray-300 placeholder-shown:placeholder-gray-300 focus:placeholder-transparent focus:outline-none focus:border-2 focus:border-purple-base caret-gray-300 w-full text-lg"
-                placeholder="Ano" />
+                placeholder="Título" />
             </div>
-            <?php if (isset($validacoes["ano"])) : ?>
-              <?php foreach ($validacoes["ano"] as $validacao) : ?>
+            <?php if (isset($validacoes["titulo"])) : ?>
+              <?php foreach ($validacoes["titulo"] as $validacao) : ?>
                 <p class="text-sm text-error-light"><i class="ph ph-warning"></i> <?= $validacao ?></p>
               <?php endforeach; ?>
             <?php endif; ?>
           </div>
 
-          <!-- Campo Categoria -->
-          <div class="flex flex-col gap-2">
-            <div class="relative">
-              <i class="ph ph-tag absolute left-3 top-1/2 -translate-y-1/2 text-xl <?= isset($validacoes["categoria"]) ? 'text-error-base' : 'text-gray-300 has-[+.filled]:text-purple-light' ?>"></i>
-              <input
-                type="text"
-                name="categoria"
-                class="font-body bg-gray-700 border border-gray-500 rounded p-3 pl-10 text-white placeholder-gray-300 placeholder-shown:placeholder-gray-300 focus:placeholder-transparent focus:outline-none focus:border-2 focus:border-purple-base caret-gray-300 w-full text-lg"
-                placeholder="Categoria" />
+          <!-- Campos Ano e Categoria -->
+          <div class="grid grid-cols-2 gap-4">
+            <!-- Campo Ano -->
+            <div class="flex flex-col gap-2">
+              <div class="relative">
+                <i class="ph ph-calendar-blank absolute left-3 top-1/2 -translate-y-1/2 text-xl <?= isset($validacoes["ano"]) ? 'text-error-base' : 'text-gray-300 has-[+.filled]:text-purple-light' ?>"></i>
+                <input
+                  type="text"
+                  name="ano"
+                  inputmode="numeric"
+                  class="font-body bg-gray-700 border border-gray-500 rounded p-3 pl-10 text-white placeholder-gray-300 placeholder-shown:placeholder-gray-300 focus:placeholder-transparent focus:outline-none focus:border-2 focus:border-purple-base caret-gray-300 w-full text-lg"
+                  placeholder="Ano" />
+              </div>
+              <?php if (isset($validacoes["ano"])) : ?>
+                <?php foreach ($validacoes["ano"] as $validacao) : ?>
+                  <p class="text-sm text-error-light"><i class="ph ph-warning"></i> <?= $validacao ?></p>
+                <?php endforeach; ?>
+              <?php endif; ?>
             </div>
-            <?php if (isset($validacoes["categoria"])) : ?>
-              <?php foreach ($validacoes["categoria"] as $validacao) : ?>
+
+            <!-- Campo Categoria -->
+            <div class="flex flex-col gap-2">
+              <div class="relative">
+                <i class="ph ph-tag absolute left-3 top-1/2 -translate-y-1/2 text-xl <?= isset($validacoes["categoria"]) ? 'text-error-base' : 'text-gray-300 has-[+.filled]:text-purple-light' ?>"></i>
+                <input
+                  type="text"
+                  name="categoria"
+                  class="font-body bg-gray-700 border border-gray-500 rounded p-3 pl-10 text-white placeholder-gray-300 placeholder-shown:placeholder-gray-300 focus:placeholder-transparent focus:outline-none focus:border-2 focus:border-purple-base caret-gray-300 w-full text-lg"
+                  placeholder="Categoria" />
+              </div>
+              <?php if (isset($validacoes["categoria"])) : ?>
+                <?php foreach ($validacoes["categoria"] as $validacao) : ?>
+                  <p class="text-sm text-error-light"><i class="ph ph-warning"></i> <?= $validacao ?></p>
+                <?php endforeach; ?>
+              <?php endif; ?>
+            </div>
+          </div>
+          <!-- Descrição -->
+          <div class="flex flex-col gap-2">
+            <textarea
+              name="descricao"
+              rows="8"
+              class="resize-none font-body bg-gray-700 border border-gray-500 rounded p-3 pl-4 text-white placeholder-gray-300 placeholder-shown:placeholder-gray-300 focus:placeholder-transparent focus:outline-none focus:border-2 focus:border-purple-base caret-gray-300 w-full text-lg"
+              placeholder="Descrição"></textarea>
+            <?php if (isset($validacoes["descricao"])) : ?>
+              <?php foreach ($validacoes["descricao"] as $validacao) : ?>
                 <p class="text-sm text-error-light"><i class="ph ph-warning"></i> <?= $validacao ?></p>
               <?php endforeach; ?>
             <?php endif; ?>
           </div>
-        </div>
-        <!-- Descrição -->
-        <div class="flex flex-col gap-2">
-          <textarea
-            name="descricao"
-            rows="8"
-            class="resize-none font-body bg-gray-700 border border-gray-500 rounded p-3 pl-4 text-white placeholder-gray-300 placeholder-shown:placeholder-gray-300 focus:placeholder-transparent focus:outline-none focus:border-2 focus:border-purple-base caret-gray-300 w-full text-lg"
-            placeholder="Descrição"></textarea>
-          <?php if (isset($validacoes["descricao"])) : ?>
-            <?php foreach ($validacoes["descricao"] as $validacao) : ?>
-              <p class="text-sm text-error-light"><i class="ph ph-warning"></i> <?= $validacao ?></p>
-            <?php endforeach; ?>
-          <?php endif; ?>
-        </div>
 
-        <!-- Botões -->
-        <div class="flex justify-end gap-4 pt-4">
-          <button
-            id="botao-cancelar"
-            type="reset"
-            class="px-6 py-3 text-gray-300 hover:text-purple-light transition-colors">
-            Cancelar
-          </button>
-          <button
-            type="submit"
-            class="bg-purple-base text-white rounded py-3 px-6 font-body font-semibold text-lg hover:bg-purple-light hover:shadow-lg hover:shadow-purple-light/50 transition-all">
-            Salvar
-          </button>
+          <!-- Botões -->
+          <div class="flex justify-end gap-4 pt-4">
+            <button
+              id="botao-cancelar"
+              type="reset"
+              class="px-6 py-3 text-gray-300 hover:text-purple-light transition-colors">
+              Cancelar
+            </button>
+            <button
+              type="submit"
+              class="bg-purple-base text-white rounded py-3 px-6 font-body font-semibold text-lg hover:bg-purple-light hover:shadow-lg hover:shadow-purple-light/50 transition-all">
+              Salvar
+            </button>
+          </div>
         </div>
       </div>
     </div>
-  </div>
 </form>
+</div>
 
 <script>
   // Handle file upload

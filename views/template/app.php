@@ -50,17 +50,20 @@
 <body class="bg-gray-700">
   <?php if (auth()) : ?>
     <header class="bg-gray-600">
-      <div class="mx-auto max-w-screen px-6 py-2">
+      <div class="mx-auto max-w-screen px-6 py-3">
         <nav class="flex items-center justify-between">
           <img class="h-12" src="assets\logo.svg" alt="ab filmes" />
           <div class="absolute left-1/2 transform -translate-x-1/2 flex gap-4">
-            <a href="/" id="btn-explorar" class="p-2 rounded font-body text-gray-300 hover:bg-gray-500 transition-colors"><i class="ph ph-popcorn"></i> Explorar</a>
-            <a href="/meus-filmes" id="btn-meus-filmes" class="p-2 rounded font-body text-gray-300 hover:bg-gray-500 transition-colors"><i class="ph ph-film-slate"></i> Meus filmes</a>
+            <a href="/" id="btn-explorar" class="p-2 rounded font-body text-gray-300 text-lg hover:bg-gray-500 transition-colors"><i class="ph ph-popcorn"></i> Explorar</a>
+            <a href="/meus-filmes" id="btn-meus-filmes" class="p-2 rounded font-body text-gray-300 text-lg hover:bg-gray-500 transition-colors"><i class="ph ph-film-slate"></i> Meus filmes</a>
           </div>
 
           <div class="flex items-center gap-4">
             <div class="flex items-center gap-2">
               <span class="text-gray-200 font-body">Olá, <?= auth()->nome ?></span>
+              <div class="h-8 aspect-square rounded-lg bg-gradient-to-br from-purple-base to-purple-light flex items-center justify-center text-white font-bold text-lg flex-shrink-0">
+                <?= strtoupper(substr(auth()->nome, 0, 1)) ?>
+              </div>
             </div>
             <div class="w-px h-6 bg-gray-500"></div>
             <a href="/logout" class="p-2 rounded bg-gray-500 text-gray-300 hover:text-purple-light hover:bg-gray-500 transition-colors flex items-center justify-center text-lg">
@@ -72,7 +75,7 @@
     </header>
   <?php endif; ?>
 
-  <main class="mx-auto h-screen overflow-hidden">
+  <main class="mx-auto h-fit overflow-hidden">
     <?php require "../views/{$view}.view.php"; ?>
   </main>
 
@@ -86,13 +89,11 @@
 
         botao.classList.remove('text-gray-300', 'hover:bg-gray-500', 'transition-colors');
         botao.classList.add('bg-gray-500', 'text-purple-light');
-        botao.removeAttribute('href');
       } else if (menu == "meus-filmes") {
         const botao = document.getElementById('btn-meus-filmes');
 
         botao.classList.remove('text-gray-300', 'hover:bg-gray-500', 'transition-colors');
         botao.classList.add('bg-gray-500', 'text-purple-light');
-        botao.removeAttribute('href');
       }
     });
   </script>
